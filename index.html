@@ -1,313 +1,191 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Portfolio | 未経験からITへ</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Handlee&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --bg: #ffffff;
-      --ink: #0C0C0C;
-      --muted: #706F6F;
-      --card-rose: #FFC9F0;
-      --card-yellow: #FFE68C;
-      --card-blue: #9DDCFF;
-      --card-pink: #FFC9F0;
-      --shadow-sm: 0 1px 11.2px rgba(0,0,0,0.08);
-      --shadow-md: 3px 3px 12px rgba(0,0,0,0.12);
-      --radius: 8px;
-      --space-1: 8px;
-      --space-2: 12px;
-      --space-3: 18px;
-      --space-4: 24px;
-      --space-5: 32px;
-      --space-6: 40px;
-      --space-7: 56px;
-      --space-8: 72px;
-      --max-w: 1157px;
-    }
-
-    * { box-sizing: border-box; }
-    html, body { margin: 0; padding: 0; height: 100%; }
-    body { font-family: "Inter", system-ui, -apple-system, Segoe UI, Roboto, "Noto Sans JP", Helvetica, Arial, sans-serif; color: var(--ink); background: var(--bg); }
-    a { color: inherit; text-decoration: none; }
-    img { display: block; max-width: 100%; height: auto; }
-
-    /* Layout */
-    .container { width: 100%; max-width: var(--max-w); margin: 0 auto; padding: 0 var(--space-4); }
-    .row { display: flex; gap: var(--space-5); }
-    .col { display: flex; flex-direction: column; gap: var(--space-3); }
-
-    /* Navbar */
-    header { position: sticky; top: 0; z-index: 50; background: rgba(255,255,255,0.85); backdrop-filter: saturate(150%) blur(6px); border-bottom: 1px solid rgba(0,0,0,0.06); }
-    .nav { display: flex; align-items: center; justify-content: space-between; gap: 32px; padding: var(--space-3) 0; }
-    .brand { display: flex; align-items: center; gap: 15px; }
-    .brand img { width: 36px; height: 36px; }
-    .brand-title { font-family: "Handlee", cursive; font-size: 32px; line-height: 1.2; }
-    .nav-links { display: flex; gap: 32px; font-size: 18px; }
-    .cta-btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 22px; box-shadow: var(--shadow-md); background: var(--ink); color: #fff; border-radius: 999px; font-weight: 600; }
-
-    /* Hero */
-    .hero { padding: 90px 0 110px; }
-    .hero-wrap { display: grid; grid-template-columns: 1.1fr 1fr; gap: 56px; align-items: center; }
-    .hero-eyebrow { display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px; background: var(--card-rose); border-radius: 999px; box-shadow: var(--shadow-sm); font-family: "Handlee", cursive; font-size: 24px; }
-    .hero-title { font-size: clamp(36px, 6vw, 64px); line-height: 1.2; font-weight: 600; margin: var(--space-4) 0; }
-    .hero-desc { font-size: 20px; line-height: 1.6; color: var(--ink); max-width: 46ch; }
-    .hero-actions { display: flex; gap: 16px; margin-top: var(--space-4); }
-    .ghost-btn { display: inline-flex; align-items: center; gap: 10px; padding: 12px 22px; border: 1px solid #ccc; border-radius: 999px; font-weight: 600; background: #fff; }
-    .hero-art { position: relative; }
-    .logo-chip { display: inline-flex; align-items: center; gap: 10px; background: var(--card-rose); padding: 8px 12px; border-radius: 999px; box-shadow: var(--shadow-sm); font-family: "Handlee", cursive; }
-
-    /* Section titles */
-    .section { padding: 80px 0; }
-    .title-chip { display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px; border-radius: 999px; background: var(--card-rose); box-shadow: var(--shadow-sm); font-family: "Handlee", cursive; font-size: 28px; }
-    .section-lead { margin-top: 8px; color: var(--muted); }
-
-    /* Services */
-    .services { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 28px; }
-    .service-card { border-radius: var(--radius); padding: 28px; display: flex; flex-direction: column; gap: 24px; box-shadow: 0 0 0 5px rgba(0,0,0,0.02), var(--shadow-sm); border: 1px solid rgba(0,0,0,0.06); background: #fff; }
-    .service-card--yellow { background: var(--card-yellow); border-color: #EECD56; box-shadow: 5px 5px 20px rgba(255,230,140,0.13); }
-    .service-card--blue { background: var(--card-blue); border-color: #5AB5E8; box-shadow: 5px 5px 20px rgba(157,220,255,0.15); }
-    .service-card--pink { background: var(--card-pink); border-color: #F384D4; box-shadow: 5px 5px 20px rgba(255,201,240,0.13); }
-    .service-title { font-size: 28px; font-weight: 600; }
-    .badge { display: inline-flex; align-items: center; gap: 10px; padding: 8px 14px; border-radius: 999px; background: #fff; box-shadow: var(--shadow-sm); font-family: "Handlee", cursive; font-size: 24px; }
-
-    /* Projects */
-    .projects-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 28px; margin-top: 32px; }
-    .project { position: relative; overflow: hidden; border-radius: 6px; border: 3px solid #000; background: #f7f7f7; }
-    .project img { width: 100%; height: auto; display: block; }
-    .project h4 { position: absolute; left: 16px; bottom: 12px; margin: 0; padding: 8px 12px; background: #fff; border-radius: 999px; box-shadow: var(--shadow-sm); font-family: "Handlee", cursive; }
-
-    /* Experience */
-    .timeline { margin-top: 28px; display: grid; gap: 24px; }
-    .exp { display: grid; grid-template-columns: 95px 1fr; gap: 24px; align-items: start; }
-    .exp-index { display: grid; place-items: center; width: 95px; padding: 8px 0; border-radius: 6px; font-family: "Handlee", cursive; font-size: 32px; border: 2px solid #EECD56; background: var(--card-yellow); }
-    .exp-body { display: grid; gap: 6px; }
-    .exp-title { font-weight: 600; }
-    .exp-meta { color: var(--muted); font-size: 14px; }
-
-    /* Contact */
-    .contact-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: start; margin-top: 32px; }
-    .field { display: grid; gap: 8px; }
-    .label { font-family: "Handlee", cursive; font-size: 24px; }
-    input[type="text"], input[type="email"], textarea { width: 100%; padding: 14px 16px; border-radius: 8px; border: 2px solid #000; background: #fff; box-shadow: var(--shadow-sm); font-size: 16px; }
-    textarea { min-height: 140px; resize: vertical; }
-
-    /* Footer */
-    footer { margin-top: 80px; padding: 56px 0 40px; border-top: 1px solid rgba(0,0,0,0.08); }
-    .socials { display: flex; gap: 24px; }
-    .chip { display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px; border-radius: 999px; background: #000; color: #fff; box-shadow: var(--shadow-sm); }
-    .copy { color: var(--muted); margin-top: 16px; }
-
-    /* Responsive */
-    @media (max-width: 960px) {
-      .hero-wrap { grid-template-columns: 1fr; }
-      .services { grid-template-columns: 1fr; }
-      .projects-grid { grid-template-columns: 1fr; }
-      .contact-wrap { grid-template-columns: 1fr; }
-      .nav-links { display: none; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>画像コンバーター (JPG / WebP)</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Navbar -->
-  <header>
-    <div class="container nav">
-      <div class="brand">
-        <img src="assets/logo.svg" alt="Logo">
-        <div class="brand-title">znisa</div>
-      </div>
-      <nav class="nav-links">
-        <a href="#services">Portfolio</a>
-        <a href="#contact">Hire Me</a>
-      </nav>
-      <a class="cta-btn" href="#contact">Contact</a>
-    </div>
-  </header>
-
-  <!-- Hero / Section 1 -->
-  <section class="hero">
-    <div class="container hero-wrap">
-      <div class="col">
-        <span class="hero-eyebrow">What I do?</span>
-        <h1 class="hero-title">デザイン×ノーコードで、最初の一歩をかたちにします</h1>
-        <p class="hero-desc">未経験からIT業界へ挑戦中のポートフォリオです。UX/UIデザインの基礎学習と、ノーコードによるWeb制作を中心に、実践的なアウトプットを積み重ねています。まずは小さく作って、早く届けることを大切にしています。</p>
-        <div class="hero-actions">
-          <a class="cta-btn" href="#projects">View Projects</a>
-          <a class="ghost-btn" href="#contact">Hire me</a>
-        </div>
-      </div>
-      <div class="hero-art col">
-        <span class="logo-chip"><img src="assets/device.svg" alt="Device" width="22" height="22"> znisa</span>
-        <img src="assets/featured-2.png" alt="ヒーローイメージ（制作例サムネイル）">
-      </div>
-    </div>
-  </section>
-
-  <!-- Services / What I do -->
-  <section id="services" class="section">
     <div class="container">
-      <span class="title-chip">What I do?</span>
-      <p class="section-lead">学習の中心はUXリサーチとUIデザイン、そしてNo-codeによる実装です。</p>
+        <!-- ヘッダー -->
+        <header>
+            <h1>🖼️ 画像コンバーター</h1>
+            <p>PNG / JPEG / WebP / GIF / AVIF / BMP を JPG または WebP に一括変換</p>
+        </header>
 
-      <div class="services">
-        <article class="service-card service-card--yellow">
-          <img src="assets/ux-icon.svg" alt="UX アイコン" width="60" height="60">
-          <h3 class="service-title">UXデザイン（基礎）</h3>
-          <p>
-            ユーザーの課題を整理し、仮説→検証のサイクルを小さく回すことを重視。簡易なペルソナ、ユーザーストーリー、紙プロトタイプでの検証などを行います。
-          </p>
-          <span class="badge">Pen / Paper</span>
-        </article>
+        <!-- メインコンテンツ -->
+        <div class="main-content">
+            <!-- ドラッグ&ドロップゾーン -->
+            <section class="upload-section">
+                <div id="dropZone" class="drop-zone">
+                    <p>🎯 画像をここにドラッグ&ドロップ</p>
+                    <p class="drop-zone-formats">対応: PNG / JPEG / WebP / GIF / AVIF / BMP</p>
+                    <p>または</p>
+                    <input type="file" id="fileInput" accept=".png,.jpg,.jpeg,.webp,.gif,.avif,.bmp,image/png,image/jpeg,image/webp,image/gif,image/avif,image/bmp" multiple style="display:none;">
+                    <button onclick="document.getElementById('fileInput').click()" class="btn-upload">
+                        ファイルを選択
+                    </button>
+                </div>
+            </section>
 
-        <article class="service-card service-card--blue">
-          <img src="assets/ui-icon.svg" alt="UI アイコン" width="60" height="60">
-          <h3 class="service-title">UI & Product Design</h3>
-          <p>
-            Figmaを用いたモック作成、カラー/タイポのルール化、コンポーネント設計を学習中。読みやすさと再現性を意識した設計を心がけています。
-          </p>
-          <span class="badge">Figma</span>
-        </article>
+            <div class="content-grid">
+                <!-- 左: プリセット設定 -->
+                <section class="settings-section">
+                    <h2>⚙️ 変換設定</h2>
 
-        <article class="service-card service-card--pink">
-          <img src="assets/nocode-icon.svg" alt="No-code アイコン" width="60" height="60">
-          <h3 class="service-title">No-code Development</h3>
-          <p>
-            Webflowなどのノーコードで、デザインから公開までをスピーディーに実施。小規模なLPやポートフォリオの制作を想定したワークフローを実践しています。
-          </p>
-          <span class="badge">Webflow</span>
-        </article>
-      </div>
-    </div>
-  </section>
+                    <div class="output-format-select">
+                        <h3>出力形式（バッチ全体）</h3>
+                        <div class="output-format-options">
+                            <label class="output-format-option">
+                                <input type="radio" name="outputFormat" value="jpeg" checked>
+                                <span>JPG</span>
+                            </label>
+                            <label class="output-format-option">
+                                <input type="radio" name="outputFormat" value="webp">
+                                <span>WebP</span>
+                            </label>
+                        </div>
+                        <p id="webpUnsupportedNote" class="format-note" hidden>
+                            このブラウザでは WebP 出力に非対応です
+                        </p>
+                    </div>
 
-  <!-- Featured Projects / Section 2 -->
-  <section id="projects" class="section" aria-labelledby="projects-title">
-    <div class="container">
-      <span id="projects-title" class="title-chip">Featured Projects</span>
-      <p class="section-lead">4つのスタイルでUIを試作し、配色と余白バランスを検証。</p>
-      <div class="projects-grid">
-        <figure class="project">
-          <img src="assets/featured-1.png" alt="ポートフォリオUI案 1">
-          <h4>Color system for app</h4>
-        </figure>
-        <figure class="project">
-          <img src="assets/featured-2.png" alt="ポートフォリオUI案 2">
-          <h4>Onboarding screen</h4>
-        </figure>
-        <figure class="project">
-          <img src="assets/featured-3.png" alt="ポートフォリオUI案 3">
-          <h4>Finance Landing</h4>
-        </figure>
-        <figure class="project">
-          <img src="assets/featured-4.png" alt="ポートフォリオUI案 4">
-          <h4>Portfolio design</h4>
-        </figure>
-      </div>
-    </div>
-  </section>
+                    <details class="usage-guide">
+                        <summary>📖 使い分けガイド</summary>
+                        <div class="usage-guide-content">
+                            <section class="guide-section">
+                                <h4>画像タイプ別の目安</h4>
+                                <p class="guide-lead">出力形式はバッチ全体で共通です。アップロードしたすべての画像が同じ形式で変換されます。</p>
+                                <table class="guide-table">
+                                    <thead>
+                                        <tr>
+                                            <th>画像タイプ</th>
+                                            <th>向く出力</th>
+                                            <th>品質の目安</th>
+                                            <th>補足</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>写真</td>
+                                            <td>JPG / WebP</td>
+                                            <td>75〜85%</td>
+                                            <td>サイズと画質のバランスが取りやすい</td>
+                                        </tr>
+                                        <tr>
+                                            <td>イラスト</td>
+                                            <td>WebP / JPG</td>
+                                            <td>85〜95%</td>
+                                            <td>境界・グラデーションは高め推奨</td>
+                                        </tr>
+                                        <tr>
+                                            <td>図形・表</td>
+                                            <td>WebP / JPG</td>
+                                            <td>90〜100%</td>
+                                            <td>線や文字のにじみを抑える。元が小さい PNG なら変換不要なことも</td>
+                                        </tr>
+                                        <tr>
+                                            <td>スクリーンショット</td>
+                                            <td>WebP 推奨</td>
+                                            <td>90〜100%</td>
+                                            <td>文字の読みやすさ優先</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </section>
 
-  <!-- Work Experience / Section 3 -->
-  <section class="section" aria-labelledby="exp-title">
-    <div class="container">
-      <span id="exp-title" class="title-chip">Work Experience</span>
-      <p class="section-lead">実務はこれから。学習・制作・改善のプロセスを積み上げています。</p>
-      <div class="timeline">
-        <div class="exp">
-          <div class="exp-index">1</div>
-          <div class="exp-body">
-            <div class="exp-title">学習開始（デザイン基礎・Figma）</div>
-            <div>配色・タイポグラフィ・コンポーネントの基本を学び、簡易モックを複数制作。</div>
-            <div class="exp-meta">2024年〜</div>
-          </div>
+                            <section class="guide-section">
+                                <h4>品質と圧縮率について</h4>
+                                <p><strong>品質スライダーと圧縮率は比例しません。</strong></p>
+                                <ul>
+                                    <li><strong>品質</strong> … 変換時にどれだけ細部を捨てるかの設定</li>
+                                    <li><strong>圧縮率</strong> … 元ファイルサイズに対して実際にどれだけ小さくなったか（結果テーブルに表示）</li>
+                                </ul>
+                                <p>画像の中身によって結びつき方が変わります。</p>
+                                <ul>
+                                    <li><strong>図形・表</strong> … 高品質でも圧縮率が高い（よく小さくなる）ことが多い</li>
+                                    <li><strong>すでに小さい PNG</strong> … 圧縮率 0% やマイナスもあり得る</li>
+                                    <li><strong>写真</strong> … 品質を下げるほどファイルは小さくなりやすいが、完全な直線ではない</li>
+                                    <li><strong>JPEG の再変換</strong> … 圧縮率はあまり動かないのに、画質だけ劣化することがある</li>
+                                </ul>
+                            </section>
+
+                            <section class="guide-section">
+                                <h4>不可逆変換の注意</h4>
+                                <ul>
+                                    <li>JPG と WebP（本アプリ）はいずれも<strong>不可逆（ロッシー）圧縮</strong>です</li>
+                                    <li>同じ画像を繰り返し変換するたびに<strong>画質が劣化</strong>します（品質 100% でも可逆ではありません）</li>
+                                    <li>何回変換されたかの履歴はファイルに残りません</li>
+                                    <li>元が JPEG の画像を再度 JPG に変換する用途には向きません</li>
+                                </ul>
+                            </section>
+
+                            <section class="guide-section">
+                                <h4>WebP について</h4>
+                                <p>本アプリの WebP 出力はブラウザの Canvas API を利用した<strong>不可逆 WebP のみ</strong>です。可逆（ロッスレス）WebP には対応していません。</p>
+                            </section>
+                        </div>
+                    </details>
+
+                    <!-- プリセット選択 -->
+                    <div class="presets-display">
+                        <h3>実行プリセット</h3>
+                        <div id="presetList" class="preset-list">
+                            <!-- 動的生成 -->
+                        </div>
+                    </div>
+
+                    <!-- プリセット編集 -->
+                    <div class="presets-edit">
+                        <h3>プリセット編集</h3>
+                        <div id="presetEditor" class="preset-editor">
+                            <!-- 動的生成 -->
+                        </div>
+                        <button onclick="resetPresets()" class="btn-reset">
+                            デフォルトにリセット
+                        </button>
+                    </div>
+                </section>
+
+                <!-- 右: プレビュー -->
+                <section class="preview-section">
+                    <h2>👁️ プレビュー</h2>
+                    <div class="preview-container" id="previewContainer" style="display:none;">
+                        <div id="previewList" class="preview-list"></div>
+                    </div>
+                </section>
+            </div>
+
+            <!-- 結果テーブル -->
+            <section class="results-section" id="resultsSection" style="display:none;">
+                <h2>📊 変換結果</h2>
+                <table id="resultsTable">
+                    <thead>
+                        <tr id="resultsTableHead">
+                            <th>プリセット</th>
+                            <th>品質</th>
+                            <th>出力ファイル名</th>
+                            <th>元サイズ</th>
+                            <th>変換後</th>
+                            <th>圧縮率</th>
+                        </tr>
+                    </thead>
+                    <tbody id="resultsTableBody">
+                        <!-- 動的生成 -->
+                    </tbody>
+                </table>
+                <button onclick="downloadAll()" class="btn-download-all">
+                    ⬇️ すべてをZIPダウンロード
+                </button>
+            </section>
         </div>
-        <div class="exp">
-          <div class="exp-index">2</div>
-          <div class="exp-body">
-            <div class="exp-title">小規模案件の想定制作（LP/ポートフォリオ）</div>
-            <div>要件を仮定し、ワイヤー→UI→公開までを通しで実施。レビューを受け改善。</div>
-            <div class="exp-meta">2025年 前半</div>
-          </div>
-        </div>
-        <div class="exp">
-          <div class="exp-index">3</div>
-          <div class="exp-body">
-            <div class="exp-title">ノーコード導入と運用</div>
-            <div>Webflow等でのサイト運用を想定し、改修とABテストを小さく回す体制を準備。</div>
-            <div class="exp-meta">2025年 後半〜</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Contact / Section 4 -->
-  <section id="contact" class="section" aria-labelledby="contact-title">
-    <div class="container">
-      <span id="contact-title" class="title-chip">Contact here</span>
-      <p class="section-lead">案件のご相談や制作のフィードバックなど、お気軽にご連絡ください。</p>
-      <div class="contact-wrap">
-        <form class="col" onsubmit="event.preventDefault(); alert('送信ありがとうございます！');">
-          <div class="field">
-            <label class="label" for="name">Name</label>
-            <input id="name" type="text" name="name" placeholder="お名前">
-          </div>
-          <div class="field">
-            <label class="label" for="email">Your email</label>
-            <input id="email" type="email" name="email" placeholder="example@example.com">
-          </div>
-          <div class="field">
-            <label class="label" for="about">About Project</label>
-            <textarea id="about" name="about" placeholder="ご相談内容を簡単にご記入ください"></textarea>
-          </div>
-          <div>
-            <button class="cta-btn" type="submit">Send Here</button>
-          </div>
-        </form>
-        <div class="col" aria-label="連絡先の見本情報">
-          <div class="brand" style="gap:10px;">
-            <img src="assets/logo.svg" alt="Logo">
-            <div class="brand-title">znisa</div>
-          </div>
-          <div>
-            <strong>氏名</strong><br>
-            サンプル 太郎
-          </div>
-          <div>
-            <strong>メール</strong><br>
-            sample.taro@example.com
-          </div>
-          <div>
-            <strong>関心領域</strong><br>
-            UX/UIデザイン、ノーコード制作、LP改善、配色設計
-          </div>
-        </div>
-      </div>
+        <!-- ステータスメッセージ -->
+        <div id="statusMessage" class="status-message" style="display:none;"></div>
     </div>
-  </section>
 
-  <!-- Footer -->
-  <footer>
-    <div class="container" style="display:flex; align-items:center; justify-content:space-between; gap:40px; flex-wrap:wrap;">
-      <div class="brand">
-        <img src="assets/logo.svg" alt="Logo">
-        <div class="brand-title">znisa</div>
-      </div>
-      <div class="socials">
-        <a class="chip" href="#" aria-label="Twitter X">Twitter X</a>
-        <a class="chip" href="#" aria-label="LinkedIn">LinkedIn</a>
-        <a class="chip" href="#" aria-label="Instagram">Instagram</a>
-      </div>
-      <div class="copy">Copyright. Portfolio 2024</div>
-    </div>
-  </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
-
-
-
-
-
